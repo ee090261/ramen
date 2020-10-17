@@ -1,25 +1,41 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## サイト概要
+投稿者がラーメン店のレビューを載せるサイト。その投稿に対していいね機能やコメントができる。
+ラーメンと入っても一括りにしても好みが分かれるので、投稿者は好みのラーメンのジャンルが設定されており、
+同じ好みのジャンルの人がオススメしている店舗からも探せる。
 
-* Ruby version
 
-* System dependencies
+### サイトテーマ
+ラーメン好きの集まるブログサイト
 
-* Configuration
 
-* Database creation
+### テーマを選んだ理由
+何か本を探すときに有力な情報が載っているまとめサイトがあったらいいなと思っていたから
 
-* Database initialization
 
-* How to run the test suite
+### ターゲットユーザ
+全年齢
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+### 主な利用シーン
+美味しいラーメン店を探す際に使う
 
-* ...
-# ramen
+
+## 設計書
+
+
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1ia9n1tJtIBmaJJ36Ks8ruHa19x-XDXGB9xWswgMpfg0/edit#gid=0
+
+
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- 仮想環境：Vagrant,VirtualBox
+
+
+## 使用素材
