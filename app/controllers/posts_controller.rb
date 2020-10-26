@@ -9,17 +9,15 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@post = Post.new(post_params)
-		@post.user.id = current_user.id
+		@post = current_user.posts.new(post_params)
 		@post.save
 		flash[:notice]="新しく投稿されました"
-		redirect_to book_path  #if文で正しく投稿できていない記述は後日
-
+		redirect_to root_path  #if文で正しく投稿できていない記述は後日
 	end
 
 	 private
 	  def post_params
-	    params.require(:user).permit(:dish_image, :menu_title, :price, :comment)
+	    params.require(:post).permit(:dish_image, :menu_title, :price, :comment)
 	  end
 
 end

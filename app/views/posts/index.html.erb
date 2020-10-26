@@ -1,2 +1,21 @@
 aaabbb<br>
 TOPページ
+
+<h1>投稿一覧</h1>
+
+
+
+	<% @posts.each do |post| %>
+		<%= post.dish_image %>
+		<%= post.menu_title %>
+		<%= post.price %>
+		<%= post.comment %>
+	<% end %>
+
+
+
+
+
+
+
+
