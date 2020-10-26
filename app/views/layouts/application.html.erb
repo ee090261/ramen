@@ -10,6 +10,35 @@
   </head>
 
   <body>
+
+    <% if user_signed_in? %>
+      <header>
+        <div class="header-content">
+          <%= link_to 'Ramen-Hunters', root_path, class: "logo" %>
+          <ul class="flex">
+            <li><%= link_to '探す', root_path %></li> <%#パスを変更 %>
+            <li><%= link_to '新規投稿', new_post_path %></li>
+            <li><%= link_to 'マイページ', mypage_path %></li>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </div>
+      </header><!-- /header -->
+    <% else %>
+      <header>
+        <div class="header-content">
+          <%= link_to 'Ramen-Hunters', root_path, class: "logo" %>
+          <ul class="flex">
+            <li><%= link_to 'about', root_path %></li> <%#パスを変更 %>
+            <li><%= link_to '探す', root_path %></li> <%#パスを変更 %>
+            <li><%= link_to 'ログイン', new_user_session_path %></li>
+            <li><%= link_to '新規登録', new_user_registration_path %></li>
+          </ul>
+        </div>
+      </header>
+    <% end %>
+
+    <main>
     <%= yield %>
+    </main>
   </body>
 </html>
