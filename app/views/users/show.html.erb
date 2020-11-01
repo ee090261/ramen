@@ -1,2 +1,37 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+
+<h1>マイページ</h1>
+
+
+<table>
+  <%= attachment_image_tag @user, :user_image_id, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img" , fallback: "no-image.png" %>
+	<thead>
+		<tr>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>ユーザーネーム</td>
+			<td><%= @user.name %></td>
+		</tr>
+		<tr>
+			<td>好みのジャンル</td>
+			<td><%= @user.genres %></td>
+		</tr>
+		<tr>
+			<td>紹介文</td>
+			<td><%= @user.introduction %></td>
+		</tr>
+		<div class="row">
+			<%= link_to "登録情報変更", edit_user_path(@user), class: "btn btn-success" %>
+		</div>
+	</tbody>
+</table>
+
+<%= @posts.each do |post| %>
+  <tr>
+  	<td><%= attachment_image_tag post ,:dish_image, format: "jpeg", fallback: "no-image.png", class: 'img_prev' %></td>
+  </tr>
+<% end %>
