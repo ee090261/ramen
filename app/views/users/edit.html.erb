@@ -1,0 +1,39 @@
+
+<h1>登録情報変更</h1>
+
+<%= form_for(@user) do |f| %>
+  <%= f.file_field :user_image, class: 'img_field', style: 'display:none;' %>
+  <%= attachment_image_tag @user, :user_image, :fill, 100, 100, format: 'jpeg', onClick: "$('.img_field').click()", class: "img-circle pull-left profile-img img_prev" , fallback: "no-image.png" %>
+
+  <table>
+    <thead>
+		<tr>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>ユーザーネーム</td>
+			<td><%= f.label :name %> <%= f.text_field :name, :placeholder =>"#{@user.name}" %></td>
+		</tr>
+		<tr>
+			<td>お住まいの都道府県</td>
+			<td><%= f.label :prefecture %> <%= f.select :prefecture, User.prefectures.keys, :placeholder =>"#{@user.prefecture}" %></td>
+		</tr>
+		<tr>
+			<td>好みのジャンル</td>
+			<td><%= f.label :genres %> <%= f.select :genres,User.genres.keys, :placeholder =>"#{@user.prefecture}" %></td>
+		</tr>
+		<tr>
+			<td>紹介文</td>
+			<td><%= f.label :introduction %> <%= f.text_area :introduction, class: 'form-control', :placeholder =>"#{@user.introduction}" %></td>
+		</tr>
+		<tr>
+			<td><%= f.submit "編集内容を保存する", class: "btn btn-primary" %></td>
+			<td><%= link_to "退会する", user_path, class: "btn btn-danger", method: :delete %></td>
+		</tr>
+    </tbody>
+  </table>
+
+<% end %>
