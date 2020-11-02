@@ -4,7 +4,7 @@
 
 
 <table>
-  <%= attachment_image_tag @user, :user_image_id, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img" , fallback: "no-image.png" %>
+  <%= attachment_image_tag @user , :user_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img img_prev" , fallback: "no-image.png" %>
 	<thead>
 		<tr>
 			<th></th>
@@ -21,6 +21,10 @@
 			<td><%= @user.genres %></td>
 		</tr>
 		<tr>
+			<td>住まいの地域</td>
+			<td><%= @user.prefecture %></td>
+		</tr>
+		<tr>
 			<td>紹介文</td>
 			<td><%= @user.introduction %></td>
 		</tr>
@@ -30,7 +34,7 @@
 	</tbody>
 </table>
 
-<%= @posts.each do |post| %>
+<% @posts.each do |post| %>
   <tr>
   	<td><%= attachment_image_tag post ,:dish_image, format: "jpeg", fallback: "no-image.png", class: 'img_prev' %></td>
   </tr>
