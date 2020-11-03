@@ -15,6 +15,12 @@ class PostsController < ApplicationController
 		redirect_to root_path  #if文で正しく投稿できていない記述は後日
 	end
 
+	def show
+		@post = Post.find(params[:id])
+		@user = @post.user
+		@comment = PostComment.new
+	end
+
 	 private
 	  def post_params
 	    params.require(:post).permit(:dish_image, :menu_title, :price, :comment)
