@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'posts#index'
-  resources :posts, :only => [:new, :create, :show, :destory]
-  resources :users, :only => [:show, :edit, :update, :destory]
+
+  resources :users, :only => [:show, :edit, :update, :destroy]
+  resources :posts, :only => [:new, :create, :show, :destroy] do
+  	resources :post_comments, :only => [:create, :destroy]
+  end
+
 end

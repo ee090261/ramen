@@ -1,0 +1,39 @@
+<h1>投稿詳細ページ</h1>
+
+<%= attachment_image_tag @user , :user_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img img_prev" , fallback: "no-image.png" %>
+<%= attachment_image_tag @post ,:dish_image, format: "jpeg", fallback: "no-image.png", class: 'img_prev' %>
+
+<tr>
+  <td>メニュー名</td>
+  <td><%= @post.menu_title %></td>
+</tr>
+<tr>
+  <td>価格</td>
+  <td><%= @post.price %>円</td>
+</tr>
+<tr>
+  <td>コメント</td>
+  <td><%= @post.comment %>
+</tr>
+<tr>
+	<td>みんなのコメント</td>
+	<td><% @post.post_comments.each do |post_comment| %>
+			<div>
+			  <%= link_to post_comment.user.name, user_path(post_comment.user_id) %>
+			</div>
+			<div>
+				<%= post_comment.comment %>
+			</div>
+			<% if post_comment.user == current_user %>
+			  	 <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger pull-right" %>
+			<% end %>
+		<% end %>
+	</td>
+</tr>
+<%= form_for [@post, @comment] do |f| %>
+	<div>
+		<%= f.text_area :comment %>
+	</div>
+	<%= f.submit "投稿する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+<% end %>
+
