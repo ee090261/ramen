@@ -19,7 +19,7 @@
 	<td>みんなのコメント</td>
 	<td><% @post.post_comments.each do |post_comment| %>
 			<div>
-			  <%= post_comment.user.name %>
+			  <%= link_to post_comment.user.name, user_path(post_comment.user_id) %>
 			</div>
 			<div>
 				<%= post_comment.comment %>
