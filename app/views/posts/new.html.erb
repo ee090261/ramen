@@ -9,7 +9,7 @@
 
 				<div>
 					<%= f.file_field :dish_image, class: 'img_field', style: 'display:none;' %>
-					<%= attachment_image_tag @post, :dish_image, format: "jpeg", fallback: "no-image.png", onClick: "$('.img_field').click()", class: 'img-thumbnail img-responsive img_prev' %>
+					<%= attachment_image_tag @post, :dish_image, format: "jpeg", fallback: "no-image.png", size:'200x200', onClick: "$('.img_field').click()", class: 'img-thumbnail img-responsive img_prev' %>
 				
 				<p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「No Image」になります。</p>
 				</div>
