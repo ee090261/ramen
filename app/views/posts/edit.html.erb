@@ -1,0 +1,43 @@
+<h1>投稿編集ページ</h1>
+
+
+<div class="flex">
+	<%= form_with model: @post, url: post_path(@post), local: true, method: :patch do |f| %>
+	<div>
+		<%= f.file_field :dish_image, class: 'img_field', style: 'display:none;' %>
+		<%= attachment_image_tag @post, :dish_image, format: "jpeg", fallback: "no-image.png", size:'200x200', onClick: "$('.img_field').click()", class: 'img-thumbnail img-responsive img_prev' %>
+	<p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「No Image」になります。</p>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= f.label :menu_title, "メニュー" %></td>
+				<td><%= f.text_field :menu_title %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :price, "価格" %></td>
+				<td><%= f.text_field :price %>円</td>
+			</tr>
+				<td><%= f.label :shop_name, "店舗名" %></td>
+				<td><%= f.text_field :shop_name %></td>
+			</tr>
+				<td><%= f.label :adress, "店舗住所" %></td>
+				<td><%= f.text_field :adress %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :comment, "コメント" %></td>
+				<td><%= f.text_area :comment %></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="flex align-center pl5">
+		<%= f.submit "更新する", class: "btn btn-primary" %>
+	</div>
+</div>
+<% end %>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   resources :users, :only => [:show, :edit, :update, :destroy]
-  resources :posts, :only => [:new, :create, :show, :destroy] do
+  resources :posts, :only => [:new, :create, :show, :destroy, :edit, :update] do
   	resources :post_comments, :only => [:create, :destroy]
   	resource :favorites, only: [:create, :destroy]
   end

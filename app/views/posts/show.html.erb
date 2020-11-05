@@ -1,7 +1,9 @@
 <h1>投稿詳細ページ</h1>
 
-<%= attachment_image_tag @user , :user_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img img_prev" , fallback: "no-image.png" %>
-<%= attachment_image_tag @post ,:dish_image, format: "jpeg", fallback: "no-image.png", class: 'img_prev' %>
+<%= link_to user_path(@user) do %>
+  <%= attachment_image_tag @user , :user_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img img_prev" , fallback: "no-image.png" %>
+<% end %>
+<%= attachment_image_tag @post ,:dish_image, format: "jpeg", fallback: "no-image.png" %>
 
 <tr>
   <td>メニュー名</td>
@@ -12,16 +14,37 @@
   <td><%= @post.price %>円</td>
 </tr>
 <tr>
+  <td>店舗名</td>
+  <td><%= @post.shop_name %></td>
+</tr>
+<tr>
+  <td>所在地</td>
+  <td><%= @post.adress %></td>
+</tr>
+<tr>
   <td>コメント</td>
   <td><%= @post.comment %></td>
 </tr>
+<tr>
 	<% if @post.favorited_by?(current_user) %>
-	  <%= link_to "いいねを外す", post_favorites_path(@post), method: :delete %>
-	  <%= @post.favorites.count %> いいね
+	  <%= link_to post_favorites_path(@post), method: :delete do %>
+		  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+		  <%= @post.favorites.count %> いいね
+	  <% end %>
 	<% else %>
-	  <%= link_to "いいね", post_favorites_path(@post), method: :post %>
-	  <%= @post.favorites.count %> いいね
+	  <%= link_to post_favorites_path(@post), method: :post do %>
+		  <i class="fa fa-heart-o" aria-hidden="true"></i>
+		  <%= @post.favorites.count %> いいね
+	  <% end %>
 	<% end %>
+</tr>
+<tr>
+	<% if @post.user == current_user %>
+	<%= link_to "Edit", edit_post_path(@post), class: "btn-sm btn-success edit_post_#{@post.id}" %>
+	<%= link_to "Destroy", post_path(@post), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_post_#{@post.id}" %>
+	<% end %>
+</tr>
+
 
 <div>
 	<td>みんなのコメント</td>
@@ -39,10 +62,12 @@
 		<% end %>
 	</td>
 </div>
+<div>
 <%= form_for [@post, @comment] do |f| %>
 	<div>
 		<%= f.text_area :comment %>
 	</div>
 	<%= f.submit "投稿する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
 <% end %>
+</div>
 
