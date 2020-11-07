@@ -26,7 +26,8 @@
   <td><%= @post.comment %></td>
 </tr>
 <tr>
-	<% if @post.favorited_by?(current_user) %>
+	<% if user_signed_in? %>
+	<% if current_user.already_liked?(@post) %>
 	  <%= link_to post_favorites_path(@post), method: :delete do %>
 		  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
 		  <%= @post.favorites.count %> いいね
@@ -36,6 +37,7 @@
 		  <i class="fa fa-heart-o" aria-hidden="true"></i>
 		  <%= @post.favorites.count %> いいね
 	  <% end %>
+	<% end %>
 	<% end %>
 </tr>
 <tr>

@@ -1,7 +1,14 @@
 require 'test_helper'
 
 class SearchesControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should get top" do
+    get searches_top_url
+    assert_response :success
+  end
+
+  test "should get search" do
+    get searches_search_url
+    assert_response :success
+  end
+
 end
