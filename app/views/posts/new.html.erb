@@ -3,14 +3,9 @@
       <h1>本日のハントしたラーメン</h1>
 		  <%= form_for(@post, url: posts_path) do |f| %>
 		    <div class="flex">
-		    	<!--div><%# f.label :店舗名カラム, "店舗名" %></div>
-		    	<div><%# f.text_field :店舗名カラム %></div-->
-		    	<!-- 店舗名カラムの問題解決後に変更を加える -->
-
 				<div>
 					<%= f.file_field :dish_image, class: 'img_field', style: 'display:none;' %>
 					<%= attachment_image_tag @post, :dish_image, format: "jpeg", fallback: "no-image.png", size:'200x200', onClick: "$('.img_field').click()", class: 'img-thumbnail img-responsive img_prev' %>
-				
 				<p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「No Image」になります。</p>
 				</div>
 				<table>
@@ -27,7 +22,13 @@
 						</tr>
 						<tr>
 							<td><%= f.label :price, "価格" %></td>
-							<td><%= f.text_field :price %></td>
+							<td><%= f.text_field :price %>円</td>
+						</tr>
+							<td><%= f.label :shop_name, "店舗名" %></td>
+							<td><%= f.text_field :shop_name %></td>
+						</tr>
+							<td><%= f.label :adress, "店舗住所" %></td>
+							<td><%= f.text_field :adress %></td>
 						</tr>
 						<tr>
 							<td><%= f.label :comment, "コメント" %></td>

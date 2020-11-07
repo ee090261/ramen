@@ -2,7 +2,7 @@ class FavoritesController < ApplicationController
 
   def create
   	post = Post.find(params[:post_id])
-  	favorite = current_user.favorites.new(post_id: post.id)
+  	favorite = current_user.favorites.new(post_id: params[:post_id])
   	favorite.save
   	redirect_back(fallback_location: root_path)
   end
