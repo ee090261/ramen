@@ -1,37 +1,40 @@
+<div class="container">
+
+<h1 align="center">投稿一覧</h1>
+
+  <div id="posts-container">
+    <div class="col-lg-3">
+    </div>
 
 
-<h1>投稿一覧</h1>
-
-<table>
-  	<thead>
-		<tr>
-			<th>写真</th>
-			<th>メニュー</th>
-			<th>価格</th>
-			<th>店舗名</th>
-			<th>住所</th>
-			<th>コメント</th>
-		</tr>
-	</thead>
-
-	<tbody>
-	  
+      <div class="col-lg-6">
+      <div class="post-tl proported-box box-square">
 		<% @posts.each do |post| %>
-	      <tr>
-		        <th><%= link_to post_path(post) do %>
-		        	  <%= attachment_image_tag post ,:dish_image, format: "jpeg", fallback: "no-image.png", class: 'img_prev' %>
-		        	<% end %>
-		        </th>
-				<th><%= post.menu_title %></th>
-				<th><%= post.price %>円</th>
-				<th><%= post.shop_name %></th>
-				<th><%= post.adress %></th>
-				<th><%= post.comment %></th>
-		  </tr>
-	    <% end %>
-    </tbody>
-</table>
+		  <div class="inner">
+	        <%= link_to post_path(post) do %>
+	          <div class="index-dish">
+	          	<%= attachment_image_tag post ,:dish_image,:fill, 200, 200,  format: "jpeg", fallback: "no-image.png", class: 'img_prev '%>
 
+	            <div class="avatar">
+		          <%= attachment_image_tag post.user , :user_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img img_prev" , fallback: "no-image.png" %>
+		        </div>
+	            <div class="post-info">
+					  <span>
+					  	<%= post.shop_name %><br>
+					    <%= post.adress %>
+					  </span>
+			    </div>
+	          </div>
+	        <% end %>
+	      </div>
+	    <% end %>
+	  </div>
+	  </div>
+	<div class="col-lg-3">
+    </div>
+
+  </div>
+</div>
 
 
 

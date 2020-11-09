@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- レスポンシブができなかったので追記-->
   </head>
 
   <body>
@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarEexample">
               <ul class="nav navbar-nav">
                 <% if user_signed_in? %>
-                  <li class="active"><%= link_to '探す', top_path %></li>
+                  <li><%= link_to '探す', top_path %></li>
                   <li><%= link_to '新規投稿', new_post_path %></li>
                   <li><%= link_to 'マイページ', user_path(current_user) %></li>
                   <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
@@ -45,10 +45,8 @@
           </div>
         </nav>
 
-
-
       </header>
-
+      <div style="background-color: #FF8856;">
 
     <main>
     <%= yield %>

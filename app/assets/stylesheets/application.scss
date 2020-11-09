@@ -17,9 +17,40 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.navbar {
+	margin-bottom: 0px;
+}
+
+h1, h2 {
+	margin-top: 0px;
+}
+
 /* 画像投稿時のビューに変化を加える */
 .img_prev:hover {
   cursor: pointer;
   opacity: 0.7;
   transform: scale(1.01, 1.01);
+}
+
+.inner {/*親div*/
+	position: relative; /*相対配置*/
+}
+
+.inner .index-dish img{
+	width: 100%;
+}
+
+.inner .avatar img{
+    position: absolute;/*絶対配置*/
+	width: 20%;
+	top: 0;
+	left: 0;
+}
+
+.inner .post-info {
+	  position: absolute;/*絶対配置*/
+	  color: #FFFFFF;/*文字は白に*/
+	  font-size: 15pt;
+	  bottom: 0;
+	  left: 0;
 }
