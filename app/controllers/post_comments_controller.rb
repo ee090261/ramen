@@ -9,7 +9,7 @@ before_action :authenticate_user!
   	if comment.save
   		redirect_to post_path(post)
   	else
-  		render text: "投稿に失敗しました"
+  		redirect_to post_path(post) , alert: 'エラーが発生しました'
     end
 
   end

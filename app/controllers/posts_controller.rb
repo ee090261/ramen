@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+	before_action :authenticate_user!, only: [:edit, :new, :update, :destroy, :create]
 
 	def index
 		@posts = Post.all
@@ -20,9 +21,12 @@ class PostsController < ApplicationController
 
 	def create
 		@post = current_user.posts.new(post_params)
-		@post.save
-		flash[:notice]="新しく投稿されました"
-		redirect_to root_path  #if文で正しく投稿できていない記述は後日
+		if @post.save
+			flash[:notice]="新しく投稿されました"
+		    redirect_to root_path
+		    else
+			redirect_to new_post_path , alert: '投稿内容に不備があります'
+	    end
 	end
 
 	def show
@@ -31,10 +35,14 @@ class PostsController < ApplicationController
 		@comment = PostComment.new
 	end
 
+	def destroy
+		@post = Post.find(params[:id])
+		@post.destroy
+		redirect_to root_path
+	end
+
 	 private
 	  def post_params
-	    params.require(:post).permit(:dish_image, :menu_title, :price, :comment, :shop_name, :adress)
+	    params.require(:post).permit(:dish_image, :user_image, :menu_title, :price, :comment, :shop_name, :adress)
 	  end
-
 end
-

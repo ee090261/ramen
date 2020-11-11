@@ -1,75 +1,101 @@
-<h1>投稿詳細ページ</h1>
+<div class="container">
 
-<%= link_to user_path(@user) do %>
-  <%= attachment_image_tag @user , :user_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img img_prev" , fallback: "no-image.png" %>
-<% end %>
-<%= attachment_image_tag @post ,:dish_image, format: "jpeg", fallback: "no-image.png" %>
-
-<tr>
-  <td>メニュー名</td>
-  <td><%= @post.menu_title %></td>
-</tr>
-<tr>
-  <td>価格</td>
-  <td><%= @post.price %>円</td>
-</tr>
-<tr>
-  <td>店舗名</td>
-  <td><%= @post.shop_name %></td>
-</tr>
-<tr>
-  <td>所在地</td>
-  <td><%= @post.adress %></td>
-</tr>
-<tr>
-  <td>コメント</td>
-  <td><%= @post.comment %></td>
-</tr>
-<tr>
-	<% if user_signed_in? %>
-	<% if current_user.already_liked?(@post) %>
-	  <%= link_to post_favorites_path(@post), method: :delete do %>
-		  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-		  <%= @post.favorites.count %> いいね
-	  <% end %>
-	<% else %>
-	  <%= link_to post_favorites_path(@post), method: :post do %>
-		  <i class="fa fa-heart-o" aria-hidden="true"></i>
-		  <%= @post.favorites.count %> いいね
-	  <% end %>
-	<% end %>
-	<% end %>
-</tr>
-<tr>
-	<% if @post.user == current_user %>
-	<%= link_to "Edit", edit_post_path(@post), class: "btn-sm btn-success edit_post_#{@post.id}" %>
-	<%= link_to "Destroy", post_path(@post), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_post_#{@post.id}" %>
-	<% end %>
-</tr>
+    <div class="col-lg-2">
+    </div>
 
 
-<div>
-	<td>みんなのコメント</td>
-	<td><% @post.post_comments.each do |post_comment| %>
-			<div>
-			  <%= link_to post_comment.user.name, user_path(post_comment.user_id) %>
-			</div>
-			<div>
-				<%= post_comment.comment %>
-			</div>
-
-			<% if post_comment.user == current_user %>
-			  	 <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger pull-right" %>
+    <div class="col-lg-8">
+      <table class="row">
+      	<h1>投稿詳細ページ</h1>
+      	<div class="col-lg-6">
+			<%= link_to user_path(@user) do %>
+			  <%= attachment_image_tag @user , :user_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img img_prev" , fallback: "no-image.png" %>
 			<% end %>
-		<% end %>
-	</td>
-</div>
-<div>
-<%= form_for [@post, @comment] do |f| %>
-	<div>
-		<%= f.text_area :comment %>
+			<%= attachment_image_tag @post ,:dish_image, format: "jpeg", fallback: "no-image.png" %><br>
+				<% if user_signed_in? %>
+					<% if current_user.already_liked?(@post) %>
+					  <%= link_to post_favorites_path(@post), method: :delete do %>
+						  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+						  <%= @post.favorites.count %> いいね
+					  <% end %>
+					<% else %>
+					  <%= link_to post_favorites_path(@post), method: :post do %>
+						  <i class="fa fa-heart-o" aria-hidden="true"></i>
+						  <%= @post.favorites.count %> いいね
+					  <% end %>
+					<% end %>
+				<% end %>
+	    </div>
+
+        <div class="col-lg-6">
+				<tbody>
+					<tr>
+					  <th>メニュー名</th>
+					  <td><%= @post.menu_title %></td>
+					</tr>
+					<tr>
+					  <th>価格</th>
+					  <td><%= @post.price %>円</td>
+					</tr>
+					<tr>
+					  <th>店舗名</th>
+					  <td><%= @post.shop_name %></td>
+					</tr>
+					<tr>
+					  <th>所在地</th>
+					  <td><%= @post.adress %></td>
+					</tr>
+					<tr>
+					  <th>コメント</th>
+					  <td><%= @post.comment %></td>
+					</tr>
+
+
+
+					<tr>
+						<th></th>
+						<td></td>
+						<% if @post.user == current_user %>
+						<%= link_to "編集する", edit_post_path(@post), class: "btn-sm btn-success edit_post_#{@post.id}" %>
+						<%= link_to "削除する", post_path(@post), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_post_#{@post.id}" %>
+						<% end %>
+						</td>
+					</tr>
+			   </tbody>
+		</div>
+    </table>
+
+				  <tr>
+					<th>【みんなのコメント】</th>
+					<td><% @post.post_comments.each do |post_comment| %>
+							<div>
+							  <%= link_to post_comment.user.name, user_path(post_comment.user_id) %>さん
+							</div>
+							<div>
+								<%= post_comment.comment %>
+							</div>
+
+							<% if post_comment.user == current_user %>
+							  	 <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger pull-right" %>
+							<% end %>
+						<% end %>
+					</td>
+				  </tr>
+
+					<%= form_for [@post, @comment] do |f| %>
+						<div>
+							<%= f.text_area :comment, size: "15x5", class: "form-control"%>
+						</div>
+						<%= f.submit "コメントを投稿する", class: "btn btn-lg btn-base-1 mt-20" %>
+					<% end %>
+					<% if flash[:alert] %>
+					  <p><%= flash[:alert] %></p>
+					<% end %>
 	</div>
-	<%= f.submit "投稿する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-<% end %>
+
+
+    <div class="col-lg-2">
+    </div>
+
 </div>
 

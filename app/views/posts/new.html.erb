@@ -1,13 +1,16 @@
 <div class="container">
-	<div class="row">
+	<div class="col-lg-3">
+    </div>
+    <div class="col-lg-6">
       <h1>本日のハントしたラーメン</h1>
 		  <%= form_for(@post, url: posts_path) do |f| %>
-		    <div class="flex">
-				<div>
+		    <div class="row">
+				<div class="col-lg-6">
 					<%= f.file_field :dish_image, class: 'img_field', style: 'display:none;' %>
 					<%= attachment_image_tag @post, :dish_image, format: "jpeg", fallback: "no-image.png", size:'200x200', onClick: "$('.img_field').click()", class: 'img-thumbnail img-responsive img_prev' %>
 				<p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「No Image」になります。</p>
 				</div>
+				<div class="col-lg-6">
 				<table>
 					<thead>
 						<tr>
@@ -36,12 +39,16 @@
 						</tr>
 					</tbody>
 				</table>
-				<div class="flex align-center pl5">
-					<%= f.submit "submit", class: "btn btn-primary" %>
 				</div>
+				<div class="flex align-center pl5">
+					<%= f.submit "投稿する", class: "btn btn-primary" %>
+				</div>
+					<% if flash[:alert] %>
+					  <p><%= flash[:alert] %></p>
+					<% end %>
 		    </div>
 		 <% end %>
-
-
-</div>
+	</div>
+	<div class="col-lg-3">
+    </div>
 </div>
