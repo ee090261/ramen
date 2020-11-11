@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+
   def show
   	@user = User.find(params[:id])
   	@posts = @user.posts
@@ -17,6 +20,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @users = User.all
+  end
+
+  def about
+  end
 
   def destroy
 	  @user = User.find(params[:id])
