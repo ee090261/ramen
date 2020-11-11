@@ -43,6 +43,9 @@
 				<div class="flex align-center pl5">
 					<%= f.submit "投稿する", class: "btn btn-primary" %>
 				</div>
+					<% if flash[:alert] %>
+					  <p><%= flash[:alert] %></p>
+					<% end %>
 		    </div>
 		 <% end %>
 	</div>

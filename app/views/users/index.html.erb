@@ -1,12 +1,35 @@
+<div class="container">
 
+    <div class="col-lg-1">
+    </div>
 
-<div>
-  <% @users.each do |user| %>
-  <tr>
-  	<td><%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>
-  	<td><%= user.name %></td>
-	<td><%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
-  </tr>
-  <% end %>
+	<div class="col-lg-10">
+		<h1>ユーザー一覧</h1>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ユーザー画像</th>
+					<th>ユーザーネーム</th>
+                    <th>住まいの地域</th>
+                    <th>好きなジャンル</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @users.each do |user| %>
+				<tr>
+					<th><%= link_to user_path(user) do %>
+						  <%= attachment_image_tag(user, :user_image, :fill, 100, 100, fallback: "no-image.png",size:'100x100') %>
+					    <% end %>
+					</th>
+				    <td><%= user.name %></td>
+                    <td><%= user.prefecture %></td>
+                    <td><%= user.genres %></td>
+				</tr>
+				<% end %>
+			</tbody>
+	    </table>
+
+    <div class="col-lg-1">
+    </div>
+
 </div>
-

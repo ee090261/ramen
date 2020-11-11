@@ -36,27 +36,27 @@
             <td><em>(<%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %>)</em></td>
             <% end %><br />
             <td><%= f.password_field :password, autocomplete: "new-password" %></td>
-          </div></tr>
+          </tr>
 
 
           <tr class="field">
             <td><%= f.label :password_confirmation, "パスワード(確認用)" %></td><br />
             <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
-          </div></tr>
+          </tr>
 
 
           <tr class="actions">
             <td></td>
-            <td><%= f.submit "Sign up", :class=>"btn btn-success" %></td>
-          </div></tr>
+            <td><%= f.submit "登録する", :class=>"btn btn-success" %></td>
+          </tr>
         </tbody>
       </table>
     <% end %>
+    <%= render "devise/shared/links" %>
   </div>
 
 
     <div class="col-lg-3">
-      <%= render "devise/shared/links" %>
     </div>
 
 

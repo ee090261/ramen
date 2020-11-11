@@ -5,6 +5,8 @@ class Post < ApplicationRecord
 	has_many :favorites, dependent: :destroy
     attachment :dish_image
 
+    validates :menu_title, :shop_name, :adress, :comment, length: { minimum: 1 }
+    validates :dish_image, :price, presence: true
 
 
 end

@@ -14,20 +14,20 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ユーザーネーム</td>
-			<td><%= f.label :name %> <%= f.text_field :name, :placeholder =>"#{@user.name}" %></td>
+			<td><%= f.label :ユーザーネーム %> </td>
+			<td><%= f.text_field :name, :placeholder =>"#{@user.name}" %></td>
 		</tr>
 		<tr>
-			<td>お住まいの都道府県</td>
-			<td><%= f.label :prefecture %> <%= f.select :prefecture, User.prefectures.keys, :placeholder =>"#{@user.prefecture}" %></td>
+			<td><%= f.label :お住まいの都道府県 %> </td>
+			<td><%= f.select :prefecture, User.prefectures.keys, :placeholder =>"#{@user.prefecture}" %></td>
 		</tr>
 		<tr>
-			<td>好みのジャンル</td>
-			<td><%= f.label :genres %> <%= f.select :genres,User.genres.keys, :placeholder =>"#{@user.prefecture}" %></td>
+			<td><%= f.label :好みのジャンル %> </td>
+			<td><%= f.select :genres,User.genres.keys, :placeholder =>"#{@user.prefecture}" %></td>
 		</tr>
 		<tr>
-			<td>紹介文</td>
-			<td><%= f.label :introduction %> <%= f.text_area :introduction, class: 'form-control', :placeholder =>"#{@user.introduction}" %></td>
+			<td><%= f.label :紹介文 %> </td>
+			<td><%= f.text_area :introduction, class: 'form-control', :placeholder =>"#{@user.introduction}" %></td>
 		</tr>
 		<tr>
 			<td><%= f.submit "編集内容を保存する", class: "btn btn-primary" %></td>
