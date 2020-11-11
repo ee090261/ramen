@@ -38,4 +38,3 @@ private
 		params.require(:user).permit(:name, :user_image, :introduction, :prefecture, :genres)
 	end
 end
-
