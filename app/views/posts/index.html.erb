@@ -1,5 +1,9 @@
 <div class="container">
 
+	<% if flash[:notice] %>
+	  <p><%= flash[:notice] %></p>
+	<% end %>
+
 <h1 align="center">投稿一覧</h1>
 
   <div id="posts-container">

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'posts#index'
   get 'top' => 'searches#top'
   get 'about' => 'users#about'
+  post '/users/guest_sign_in', to: 'users#new_guest'
 
   resources :users, :only => [:show, :edit, :update, :destroy, :index]
   resources :posts, :only => [:new, :create, :show, :destroy, :edit, :update] do
