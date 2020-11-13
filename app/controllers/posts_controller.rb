@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 	def create
 		@post = current_user.posts.new(post_params)
 		if @post.save
-			flash[:notice]="新しく投稿されました"
+			flash[:success]="新しく投稿されました"
 		    redirect_to root_path
 		    else
 			redirect_to new_post_path , alert: '投稿内容に不備があります'
