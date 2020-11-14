@@ -13,28 +13,28 @@
 
       <div class="col-lg-6">
 	      <div class="post-tl proported-box box-square">
-			<% @posts.each do |post| %>
-			  <div class="inner">
-		        <%= link_to post_path(post) do %>
-		          <div class="index-dish">
-		          	<%= attachment_image_tag post ,:dish_image,:fill, 200, 200,  format: "jpeg", fallback: "no-image.png", class: 'img_prev '%>
+				<% @posts.each do |post| %>
+				  <div class="inner">
+			        <%= link_to post_path(post) do %>
+			          <div class="index-dish">
+			          	<%= attachment_image_tag post ,:dish_image,:fill, 200, 200,  format: "jpeg", fallback: "no-image.png", class: 'img_prev '%>
 
-		            <div class="avatar">
-			          <%= attachment_image_tag post.user , :user_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img img_prev" , fallback: "no-image.png" %>
-			        </div>
-		            <div class="post-info">
-						  <span>
-						  	<%= post.shop_name %><br>
-						    <%= post.adress %>
-						  </span>
-				    </div>
-					<% if flash[:success] %>
-						<p><%= flash[:success] %></p>
-					<% end %>
-		          </div>
-		        <% end %>
-		      </div>
-		    <% end %>
+			            <div class="avatar">
+				          <%= attachment_image_tag post.user , :user_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img img_prev" , fallback: "no-image.png" %>
+				        </div>
+			            <div class="post-info">
+							  <span>
+							  	<%= post.shop_name %><br>
+							    <%= post.adress %>
+							  </span>
+					    </div>
+			          </div>
+			        <% end %>
+			      </div>
+			    <% end %>
+			<% if flash[:success] %>
+				<p><%= flash[:success] %></p>
+			<% end %>
 		  </div>
 	  </div>
 	<div class="col-lg-3">
